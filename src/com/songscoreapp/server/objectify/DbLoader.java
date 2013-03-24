@@ -29,9 +29,9 @@ public class DbLoader {
             return false;
         }
 
-
+        BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
+            reader = new BufferedReader(new FileReader(new File(filename)));
             String line;
             while((line = reader.readLine()) != null) {
                 String[] wordSplit = line.split(",");
@@ -41,8 +41,8 @@ public class DbLoader {
                 int popularity = Integer.parseInt(wordSplit[3]);
                 Word wordToPersist = new Word(word, rhymeId, rhymeCount, popularity);
                 ofy.put(wordToPersist);
+                reader.close();
             }
-
         } catch(Exception e) {
             e.printStackTrace();
         }

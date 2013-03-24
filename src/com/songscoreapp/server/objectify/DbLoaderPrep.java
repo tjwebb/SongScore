@@ -44,8 +44,9 @@ public class DbLoaderPrep {
     }
 
     public void loadRhymes(String filename) {
+    	BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
+            reader = new BufferedReader(new FileReader(new File(filename)));
             String line;
             int rhymeId = 0;
             List<Integer[]> mergeList = new ArrayList<Integer[]>();
@@ -87,7 +88,7 @@ public class DbLoaderPrep {
                     }
                 }
             }
-
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -98,8 +99,9 @@ public class DbLoaderPrep {
     }
 
     public void assignPopularity(String filename) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
+    	BufferedReader reader = null;
+    	try {
+            reader = new BufferedReader(new FileReader(new File(filename)));
             String word;
             int popularity = 1;
             while((word = reader.readLine()) != null) {
@@ -116,7 +118,7 @@ public class DbLoaderPrep {
                     System.out.println(popularity);
                 }
             }
-
+            reader.close();
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -128,8 +130,9 @@ public class DbLoaderPrep {
      * @param popularity
      */
     public void printRhymesets(String filename) {
+    	BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
+            reader = new BufferedReader(new FileReader(new File(filename)));
             String word;
             while((word = reader.readLine()) != null) {
                 word = word.toLowerCase().trim();
@@ -148,7 +151,7 @@ public class DbLoaderPrep {
                     }
                 }
             }
-
+            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
